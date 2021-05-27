@@ -1,0 +1,7 @@
+{
+  "env": {
+    "MONGO_USER": "alam",
+    "MONGO_PASSWORD": "cheesepizza",
+    "MONGO_DB": "docs-clone"
+  }
+}
