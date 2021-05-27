@@ -6,8 +6,10 @@ const graphQLResolvers = require("./graphql/resolvers/index");
 const isAuth = require("./middleware/is-auth");
 
 const app = express();
+// Auth Middleware
 app.use(isAuth);
 
+// GraphQL Endpoint
 app.use(
   "/graphql",
   graphqlHTTP({
