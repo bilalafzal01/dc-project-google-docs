@@ -1,0 +1,69 @@
+@font-face {
+    font-family: 'Inter-ExtraLight';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/Inter-ExtraLight.ttf');
+}
+
+@font-face {
+    font-family: 'Inter-Light';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/Inter-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Inter-Thin';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/Inter-Thin.ttf');
+}
+
+@font-face {
+    font-family: 'Inter-Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Inter-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Inter-Medium';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/Inter-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Inter-SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/Inter-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Inter-Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/Inter-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/Poppins-Bold.ttf');
+}
