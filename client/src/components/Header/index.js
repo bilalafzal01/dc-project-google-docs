@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Button, Image } from "antd";
 import React from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 import { ICOLOR, NAVS, SIZE } from "../../constants";
 import { CustomButton } from "../Reusable/Buttons";
@@ -26,6 +27,7 @@ const Container = styled.div`
 const Left = styled.div`
   display: flex;
   align-items: center;
+
   h1 {
     font-family: "Poppins-SemiBold";
     margin-left: 1rem;
@@ -68,11 +70,15 @@ const SignInButton = styled(Button)`
 `;
 
 function LargeHeader() {
+  const history = useHistory();
+  const handleLeftClick = () => {
+    history.push(`/`);
+  };
   return (
     <Root>
       <Container>
-        <Left>
-          <Image src="/docs_icon.svg" width={50} />
+        <Left onClick={handleLeftClick}>
+          <Image src="/docs_icon.svg" width={50} preview={false} />
           <h1>Docs</h1>
         </Left>
         <Right>

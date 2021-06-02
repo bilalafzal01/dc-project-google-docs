@@ -67,3 +67,8 @@
     font-weight: 700;
     src: url('../fonts/Poppins-Bold.ttf');
 }
+
+/* quill js overrides */
+.ql-toolbar.ql-snow {
+    background-color: #ffffff;
+}
