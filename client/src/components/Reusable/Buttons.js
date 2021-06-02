@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import styled from "styled-components";
-import { ICOLOR } from "../../constants";
+import { ICOLOR, SIZE } from "../../constants";
 
 const CustomButton = styled(Button)`
   outline: none;
@@ -25,6 +25,11 @@ const CustomButton = styled(Button)`
   &:hover {
     cursor: pointer;
     background-color: ${({ background }) => `${background}90`};
+  }
+
+  @media screen and (max-width: ${SIZE.LG}px) {
+    font-size: 14px;
+    margin-left: 0;
   }
 `;
 

@@ -2,12 +2,13 @@
 import { Button, Image } from "antd";
 import React from "react";
 import styled from "styled-components";
-import { ICOLOR, NAVS } from "../../constants";
+import { ICOLOR, NAVS, SIZE } from "../../constants";
 import { CustomButton } from "../Reusable/Buttons";
 import NavItem from "./NavItem";
 
 const Root = styled.div`
   background-color: ${ICOLOR.white};
+  box-shadow: 0px 2px 5px #99999929;
 `;
 
 const Container = styled.div`
@@ -16,6 +17,10 @@ const Container = styled.div`
   align-items: center;
   padding: 0 47px;
   height: 110px;
+
+  @media screen and (max-width: ${SIZE.MD}px) {
+    padding: 0 24px;
+  }
 `;
 
 const Left = styled.div`
