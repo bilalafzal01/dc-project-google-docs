@@ -13,6 +13,7 @@ module.exports = buildSchema(`
     type Document {
         _id: ID!
         title: String!
+        data: String!
         mode: String!
         creator: User!
         editors: [User!]
@@ -35,7 +36,7 @@ module.exports = buildSchema(`
 
     type RootQuery {
         publicDocuments: [Document!]
-        userDocuments: [Document!]
+        user: User
         login(email: String!, password: String!): AuthData
     }
 

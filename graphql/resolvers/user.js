@@ -36,7 +36,7 @@ module.exports = {
     );
     return { userId: user.id, token: token, tokenExpiration: 1 };
   }),
-  userDocuments: error(async (args, req) => {
+  user: error(async (args, req) => {
     if (isAuth) {
       const usr = await User.findById(req.userId).populate(
         "createdDocs editingDocs"
@@ -44,7 +44,7 @@ module.exports = {
       if (!usr) {
         throw new Error("User not found");
       }
-      return user.createdDocs;
+      return usr;
     } else {
       throw new Error("Unauthorized");
     }
