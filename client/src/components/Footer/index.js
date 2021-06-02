@@ -9,11 +9,41 @@ import { CustomRow } from "../Reusable/Utilities";
 
 const Root = styled.footer`
   background-color: ${ICOLOR.darkBackground};
-  color: ${ICOLOR.textLight};
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0;
+  h6 {
+    font-size: 1rem;
+    margin-bottom: 0;
+    text-align: center;
+    color: ${ICOLOR.white};
+    text-transform: uppercase;
+
+    span.first {
+      color: ${ICOLOR.textLight};
+      text-transform: none;
+    }
+    .hearts {
+      margin: 0 0.5rem;
+      color: ${ICOLOR.orange};
+    }
+  }
 `;
 
 function CustomFooter() {
-  return <Root>footer</Root>;
+  return (
+    <Root>
+      <h6>
+        <span className="first">
+          Made with
+          <span className="hearts">&hearts;</span>
+          by
+        </span>
+        <br />
+        <span>Bilal Afzal & Alam Khalid</span>
+      </h6>
+    </Root>
+  );
 }
 
 export default CustomFooter;

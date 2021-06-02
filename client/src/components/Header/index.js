@@ -19,8 +19,11 @@ const Container = styled.div`
 `;
 
 const Left = styled.div`
+  display: flex;
+  align-items: center;
   h1 {
     font-family: "Poppins-SemiBold";
+    margin-left: 1rem;
     margin-bottom: 0;
     font-size: 2rem;
     cursor: pointer;
@@ -64,6 +67,7 @@ function LargeHeader() {
     <Root>
       <Container>
         <Left>
+          <Image src="/docs_icon.svg" width={50} />
           <h1>Docs</h1>
         </Left>
         <Right>
@@ -81,7 +85,7 @@ function LargeHeader() {
             background={ICOLOR.orange}
             textColor={ICOLOR.white}
           >
-            <span>Sign up</span>
+            <span>New Document</span>
           </CustomButton>
           <CustomButton
             borderRadius
@@ -89,7 +93,7 @@ function LargeHeader() {
             background={ICOLOR.white}
             textColor={ICOLOR.dark}
           >
-            <span>Sign In</span>
+            <span>Code</span>
           </CustomButton>
         </Buttons>
       </Container>
