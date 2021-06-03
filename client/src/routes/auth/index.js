@@ -19,7 +19,7 @@ const FrontendRoutes = () => {
         >
           {/* routes here */}
           <Route exact path="/" component={home} />
-          <Route exact path="/editor" component={editor} />
+          <Route exact path="/documents/:id" component={editor} />
         </Suspense>
       </Switch>
     </AuthLayout>

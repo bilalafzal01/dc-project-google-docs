@@ -30,7 +30,11 @@ function Homepage() {
           <h2>All Documents</h2>
           <CustomRow gutter={[16, 16]}>
             <Col xs={24} md={12} lg={8} xl={6} xxl={4}>
-              <DocumentCard />
+              <DocumentCard
+                onClickHandler={() => {
+                  window.open(`http://localhost:3006/documents/${123}`);
+                }}
+              />
             </Col>
             <Col xs={24} md={12} lg={8} xl={6} xxl={4}>
               <DocumentCard />

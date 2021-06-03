@@ -7,24 +7,7 @@ export const SIZE = {
   XXL: 1600,
 };
 
-export const NAVS = [
-  {
-    id: "id-home",
-    label: "Home",
-    link: "/",
-  },
-  {
-    id: "my-docs",
-    label: "Docs",
-    link: "/my-docs",
-  },
-
-  {
-    id: "editor",
-    label: "Editor",
-    link: "/editor",
-  },
-];
+export const NAVS = [];
 
 export const ICOLOR = {
   white: "#ffffff",

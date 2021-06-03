@@ -36,12 +36,16 @@ const CardFooter = styled.div`
   }
 `;
 
-function DocumentCard() {
+function DocumentCard({ onClickHandler }) {
   return (
     <Root>
       <span className="top">card</span>
       <CardFooter>
-        <CustomButton background={ICOLOR.orange} textColor={ICOLOR.white}>
+        <CustomButton
+          background={ICOLOR.orange}
+          textColor={ICOLOR.white}
+          onClick={onClickHandler}
+        >
           <span>Edit</span>
         </CustomButton>
       </CardFooter>

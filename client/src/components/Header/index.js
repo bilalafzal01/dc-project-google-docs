@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
 import { ICOLOR, NAVS, SIZE } from "../../constants";
 import { CustomButton } from "../Reusable/Buttons";
+import { v4 as uuidv4 } from "uuid";
 import NavItem from "./NavItem";
 
 const Root = styled.div`
@@ -95,6 +96,9 @@ function LargeHeader() {
             marginLeft="36px"
             background={ICOLOR.orange}
             textColor={ICOLOR.white}
+            onClick={() => {
+              window.open(`http://localhost:3006/documents/${uuidv4()}`);
+            }}
           >
             <span>New Document</span>
           </CustomButton>
