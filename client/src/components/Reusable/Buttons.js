@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import styled from "styled-components";
-import { ICOLOR } from "../../constants";
+import { ICOLOR, SIZE } from "../../constants";
 
 const CustomButton = styled(Button)`
   outline: none;
@@ -13,7 +13,6 @@ const CustomButton = styled(Button)`
   justify-content: space-evenly;
   align-items: center;
   height: 48px;
-  width: ${({ width }) => (width ? width : "110px")};
   span {
     font-family: "Inter-Medium";
     font-weight: 500;
@@ -26,6 +25,11 @@ const CustomButton = styled(Button)`
   &:hover {
     cursor: pointer;
     background-color: ${({ background }) => `${background}90`};
+  }
+
+  @media screen and (max-width: ${SIZE.LG}px) {
+    font-size: 14px;
+    margin-left: 0;
   }
 `;
 

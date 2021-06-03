@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { Button, Image } from "antd";
 import React from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
-import { ICOLOR, NAVS } from "../../constants";
+import { ICOLOR, NAVS, SIZE } from "../../constants";
 import { CustomButton } from "../Reusable/Buttons";
 import NavItem from "./NavItem";
 
 const Root = styled.div`
   background-color: ${ICOLOR.white};
+  box-shadow: 0px 2px 5px #99999929;
 `;
 
 const Container = styled.div`
@@ -16,11 +18,19 @@ const Container = styled.div`
   align-items: center;
   padding: 0 47px;
   height: 110px;
+
+  @media screen and (max-width: ${SIZE.MD}px) {
+    padding: 0 24px;
+  }
 `;
 
 const Left = styled.div`
+  display: flex;
+  align-items: center;
+
   h1 {
     font-family: "Poppins-SemiBold";
+    margin-left: 1rem;
     margin-bottom: 0;
     font-size: 2rem;
     cursor: pointer;
@@ -60,10 +70,15 @@ const SignInButton = styled(Button)`
 `;
 
 function LargeHeader() {
+  const history = useHistory();
+  const handleLeftClick = () => {
+    history.push(`/`);
+  };
   return (
     <Root>
       <Container>
-        <Left>
+        <Left onClick={handleLeftClick}>
+          <Image src="/docs_icon.svg" width={50} preview={false} />
           <h1>Docs</h1>
         </Left>
         <Right>
@@ -81,7 +96,7 @@ function LargeHeader() {
             background={ICOLOR.orange}
             textColor={ICOLOR.white}
           >
-            <span>Sign up</span>
+            <span>New Document</span>
           </CustomButton>
           <CustomButton
             borderRadius
@@ -89,7 +104,7 @@ function LargeHeader() {
             background={ICOLOR.white}
             textColor={ICOLOR.dark}
           >
-            <span>Sign In</span>
+            <span>Code</span>
           </CustomButton>
         </Buttons>
       </Container>
