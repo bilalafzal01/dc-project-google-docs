@@ -1,12 +1,16 @@
 /* eslint-disable no-unused-vars */
-import { Button, Image } from "antd";
-import React from "react";
+import { Button, Col, Drawer, Image, Menu } from "antd";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { v4 as uuidv4 } from "uuid";
+import FeatherIcon from "feather-icons-react";
 import styled from "styled-components";
+
 import { ICOLOR, NAVS, SIZE } from "../../constants";
 import { CustomButton } from "../Reusable/Buttons";
-import { v4 as uuidv4 } from "uuid";
 import NavItem from "./NavItem";
+import useViewPort from "../../hooks/useViewport";
+import { CustomRow } from "../Reusable/Utilities";
 
 const Root = styled.div`
   background-color: ${ICOLOR.white};
@@ -18,11 +22,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 47px;
-  height: 110px;
-
-  @media screen and (max-width: ${SIZE.MD}px) {
-    padding: 0 24px;
-  }
+  height: 90px;
 `;
 
 const Left = styled.div`
@@ -51,6 +51,12 @@ const Buttons = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-left: 40px;
+
+  @media screen and (max-width: ${SIZE.XL}px) {
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const SignInButton = styled(Button)`
@@ -69,6 +75,8 @@ const SignInButton = styled(Button)`
     text-transform: uppercase;
   }
 `;
+
+const Sider = styled.div``;
 
 function LargeHeader() {
   const history = useHistory();
@@ -116,4 +124,68 @@ function LargeHeader() {
   );
 }
 
-export default LargeHeader;
+function SmallHeader() {
+  const history = useHistory();
+  const handleLeftClick = () => {
+    history.push(`/`);
+  };
+  const [siderShow, setSiderShow] = useState(false);
+
+  return (
+    <Root>
+      <Container>
+        <Left onClick={handleLeftClick}>
+          <Image src="/docs_icon.svg" width={50} preview={false} />
+          <h1>Docs</h1>
+        </Left>
+        <Right>
+          <CustomButton onClick={() => setSiderShow(!siderShow)}>
+            <FeatherIcon icon="menu" fill="black" />
+          </CustomButton>
+        </Right>
+        <Drawer
+          title={null}
+          placement="right"
+          closable={true}
+          onClose={() => setSiderShow(false)}
+          visible={siderShow}
+        >
+          <CustomRow marginbottom="1rem">
+            <Col span={24}>
+              <CustomButton
+                borderRadius
+                marginLeft="36px"
+                background={ICOLOR.orange}
+                textColor={ICOLOR.white}
+                onClick={() => {
+                  window.open(`http://localhost:3006/documents/${uuidv4()}`);
+                }}
+              >
+                <span>New Document</span>
+              </CustomButton>
+            </Col>
+          </CustomRow>
+          <CustomRow marginbottom="1rem">
+            <Col span={24}>
+              <CustomButton
+                borderRadius
+                marginLeft="5px"
+                background={ICOLOR.white}
+                textColor={ICOLOR.dark}
+              >
+                <span>Code</span>
+              </CustomButton>
+            </Col>
+          </CustomRow>
+        </Drawer>
+      </Container>
+    </Root>
+  );
+}
+
+const CustomHeader = () => {
+  const windowSize = useViewPort();
+  return windowSize.width >= SIZE.XL ? <LargeHeader /> : <SmallHeader />;
+};
+
+export default CustomHeader;

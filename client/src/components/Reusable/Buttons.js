@@ -27,6 +27,10 @@ const CustomButton = styled(Button)`
     background-color: ${({ background }) => `${background}90`};
   }
 
+  &:focus {
+    background-color: ${({ background }) => `${background}95`};
+  }
+
   @media screen and (max-width: ${SIZE.LG}px) {
     font-size: 14px;
     margin-left: 0;
