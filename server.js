@@ -1,21 +1,25 @@
 const mongoose = require("mongoose");
+const cors = require("cors");
+const express = require("express");
 const Document = require("./document");
 
-// Connect to database
-mongoose
-  .connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.9ym60.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`,
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
-  .then(() => {
-    const PORT = process.env.PORT || 4000;
-    app.listen(PORT, () => {
-      console.log(`Server started at ${PORT}...`);
-    });
-  })
-  .catch((err) => console.log(err));
+const app = express();
+app.use(cors());
+const port = process.env.PORT || 4000;
+app.listen(port, () => console.log(`Server started on port ${port}`));
 
-const io = require("socket.io")(3001, {
+app.get("/documents", async (req, res) => {
+  const docs = await Document.find();
+  res.send(docs);
+});
+
+// Connect to database
+mongoose.connect(
+  `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.9ym60.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`,
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
+
+const io = require("socket.io")(4001, {
   cors: { origin: "http://localhost:3006", methods: ["GET", "POST"] },
 });
 
