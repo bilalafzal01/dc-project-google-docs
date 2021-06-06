@@ -19,7 +19,7 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
-const io = require("socket.io")(4001, {
+const io = require("socket.io")(3001, {
   cors: { origin: "http://localhost:3006", methods: ["GET", "POST"] },
 });
 
