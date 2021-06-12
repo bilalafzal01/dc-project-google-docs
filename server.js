@@ -9,6 +9,8 @@ app.use(cors());
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
+app.get(`/`, (req, req) => res.send(`Hey, this is the backend running`));
+
 app.get("/documents", async (req, res) => {
   const docs = await Document.find();
   res.send(docs);
