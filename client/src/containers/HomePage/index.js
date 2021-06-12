@@ -5,6 +5,11 @@ import { SIZE } from "../../constants";
 import DocumentCard from "./components/DocumentCard";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import NameModal from "../../components/NameModal";
+import { useDispatch, useSelector } from "react-redux";
+import actions from "../../redux/actions";
+
+const { triggerNameModal } = actions;
 
 const Root = styled.div`
   padding: 2.5rem 7.5rem;
@@ -24,6 +29,7 @@ const DocsCol = styled(Col)`
 `;
 
 function Homepage() {
+  const dispatch = useDispatch();
   const [docs, setDocs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -52,7 +58,7 @@ function Homepage() {
                   <DocumentCard
                     cardData={d}
                     onClickHandler={() => {
-                      window.open(`http://localhost:3006/documents/${d._id}`);
+                      dispatch(triggerNameModal(d._id));
                     }}
                   />
                 </Col>
@@ -61,9 +67,11 @@ function Homepage() {
           </CustomRow>
         </DocsCol>
       </CustomRow>
-      {/* all docs */}
+      {/* name modal */}
       <CustomRow>
-        <Col span={24}></Col>
+        <Col span={24}>
+          <NameModal />
+        </Col>
       </CustomRow>
     </Root>
   );

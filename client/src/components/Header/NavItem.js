@@ -4,17 +4,19 @@ import { ICOLOR } from "../../constants";
 import styled from "styled-components";
 
 const Root = styled.div`
-  padding: 0 20px 7px 20px;
+  padding: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 3px solid ${ICOLOR.orange};
+
   span {
     cursor: pointer;
     text-decoration: none;
     color: ${ICOLOR.dark};
-    font-size: 16px;
+    font-size: 20px;
     text-transform: uppercase;
-    font-family: "Inter-Medium";
+    font-family: "Inter-Bold";
     line-height: 19px;
   }
 
@@ -30,7 +32,7 @@ const NavItem = (props) => {
   return (
     <Root
       key={id}
-      onClick={() => history.push(link)}
+      onClick={() => (link ? history.push(link) : null)}
       className={window.location.pathname === link ? "active" : ""}
     >
       <span>{label}</span>

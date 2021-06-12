@@ -1,16 +1,20 @@
 /* eslint-disable no-unused-vars */
 import { Button, Col, Drawer, Image, Menu } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { v4 as uuidv4 } from "uuid";
+import queryString from "query-string";
 import FeatherIcon from "feather-icons-react";
 import styled from "styled-components";
-
+import { useDispatch, useSelector } from "react-redux";
 import { ICOLOR, NAVS, SIZE } from "../../constants";
 import { CustomButton } from "../Reusable/Buttons";
 import NavItem from "./NavItem";
 import useViewPort from "../../hooks/useViewport";
 import { CustomRow } from "../Reusable/Utilities";
+import actions from "../../redux/actions";
+
+const { triggerNameModal } = actions;
 
 const Root = styled.div`
   background-color: ${ICOLOR.white};
@@ -78,10 +82,15 @@ const SignInButton = styled(Button)`
 
 const Sider = styled.div``;
 
-function LargeHeader() {
+function LargeHeader({ name }) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const handleLeftClick = () => {
-    history.push(`/`);
+    history.push(name ? `/?name=${name}` : `/`);
+  };
+  const nameModal = useSelector((state) => state.modals.nameModal);
+  const handleNewClick = () => {
+    dispatch(triggerNameModal());
   };
   return (
     <Root>
@@ -96,6 +105,9 @@ function LargeHeader() {
               const { id, label, link } = item;
               return <NavItem {...{ id, label, link }} key={id} />;
             })}
+            {name ? (
+              <NavItem id={name} label={`User: ${name}`} link="" />
+            ) : null}
           </NavBar>
         </Right>
         <Buttons>
@@ -104,9 +116,7 @@ function LargeHeader() {
             marginLeft="36px"
             background={ICOLOR.orange}
             textColor={ICOLOR.white}
-            onClick={() => {
-              window.open(`http://localhost:3006/documents/${uuidv4()}`);
-            }}
+            onClick={handleNewClick}
           >
             <span>New Document</span>
           </CustomButton>
@@ -124,10 +134,14 @@ function LargeHeader() {
   );
 }
 
-function SmallHeader() {
+function SmallHeader({ name }) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const handleLeftClick = () => {
-    history.push(`/`);
+    history.push(name ? `/?name=${name}` : `/`);
+  };
+  const handleNewClick = () => {
+    dispatch(triggerNameModal());
   };
   const [siderShow, setSiderShow] = useState(false);
 
@@ -138,11 +152,13 @@ function SmallHeader() {
           <Image src="/docs_icon.svg" width={50} preview={false} />
           <h1>Docs</h1>
         </Left>
+        {name ? <NavItem id={name} label={name} link="" /> : null}
         <Right>
           <CustomButton onClick={() => setSiderShow(!siderShow)}>
             <FeatherIcon icon="menu" fill="black" />
           </CustomButton>
         </Right>
+
         <Drawer
           title={null}
           placement="right"
@@ -157,9 +173,7 @@ function SmallHeader() {
                 marginLeft="36px"
                 background={ICOLOR.orange}
                 textColor={ICOLOR.white}
-                onClick={() => {
-                  window.open(`http://localhost:3006/documents/${uuidv4()}`);
-                }}
+                onClick={handleNewClick}
               >
                 <span>New Document</span>
               </CustomButton>
@@ -185,7 +199,13 @@ function SmallHeader() {
 
 const CustomHeader = () => {
   const windowSize = useViewPort();
-  return windowSize.width >= SIZE.XL ? <LargeHeader /> : <SmallHeader />;
+  const { name } = queryString.parse(window.location.search);
+
+  return windowSize.width >= SIZE.XL ? (
+    <LargeHeader name={name} />
+  ) : (
+    <SmallHeader name={name} />
+  );
 };
 
 export default CustomHeader;

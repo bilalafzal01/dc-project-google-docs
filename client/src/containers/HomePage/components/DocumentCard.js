@@ -40,7 +40,9 @@ function DocumentCard({ onClickHandler, cardData }) {
   return (
     <Root>
       <span className="top">
-        {cardData.data.ops[0].insert.substring(0, 50)}
+        {cardData.data
+          ? cardData.data.ops[0].insert.substring(0, 50)
+          : "Empty Document"}
       </span>
       <CardFooter>
         <CustomButton

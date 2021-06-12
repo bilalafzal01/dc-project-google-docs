@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const express = require("express");
 const Document = require("./document");
+const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
 const app = express();
 app.use(cors());
@@ -26,6 +27,27 @@ const io = require("socket.io")(3001, {
 const defaultValue = "";
 
 io.on("connection", (socket) => {
+  console.log(`We have a new connection!`);
+  socket.on("join", ({ name, document }, callback) => {
+    const { error, user } = addUser({ id: socket.id, name, document });
+    if (error) return callback(error);
+    socket.join(user.room);
+    socket.emit("message", {
+      user: "Admin",
+      text: `${user.name}, welcome to room ${user.room}.`,
+      type: `info`,
+    });
+    socket.broadcast.to(user.room).emit("message", {
+      user: "Admin",
+      text: `${user.name} has joined the chat!`,
+      type: `info`,
+    });
+    io.to(user.document).emit("roomData", {
+      room: user.document,
+      users: getUsersInRoom(user.document),
+    });
+    callback();
+  });
   socket.on("get-document", async (documentId) => {
     const { data } = await findOrCreateDocument(documentId);
     socket.join(documentId);

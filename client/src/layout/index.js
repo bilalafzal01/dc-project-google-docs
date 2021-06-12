@@ -2,7 +2,12 @@
 import { Layout } from "antd";
 import LargeHeader from "../components/Header";
 import CustomFooter from "../components/Footer";
+import styled from "styled-components";
 const { Content } = Layout;
+
+const CustomContent = styled(Content)`
+  min-height: 80vh;
+`;
 
 function AuthLayout(props) {
   const { children } = props;
@@ -10,7 +15,7 @@ function AuthLayout(props) {
   return (
     <Layout>
       <LargeHeader />
-      <Content>{children}</Content>
+      <CustomContent>{children}</CustomContent>
       <CustomFooter />
     </Layout>
   );
